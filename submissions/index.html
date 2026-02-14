@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Odetosustainance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Credits to jsdelivr --> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Credits to Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <a href="#" class="sidebar-link active" data-target="attendance">
+      <i class="bi bi-people-fill"></i> Attendance
+    </a>
+    <a href="#" class="sidebar-link" data-target="menu">
+      <i class="bi bi-list"></i> Menu
+    </a>
+    <a href="#" class="sidebar-link" data-target="calculator">
+      <i class="bi bi-calculator"></i> Calculator
+    </a>
+    <a href="#" class="sidebar-link" data-target="graphs">
+      <i class="bi bi-bar-chart-fill"></i> Graphs
+    </a>
+    <a href="index2.html" class="nav-link">
+      <i class="bi bi-shift-fill"></i> Shift mode
+    </a>
+  </div>
+
+  <div class="main">
+
+    <div id="attendance" class="section active">
+      <div class="card-box">
+        <h2>Attendance</h2>
+        <div class="message-area"></div>
+
+        <div class="mb-3">
+          <button class="btn btn-outline-primary mark-btn active">Mark</button>
+          <button class="btn btn-outline-warning edit-btn">Edit</button>
+        </div>
+
+        <input id="studentName" class="form-control mb-2" placeholder="Student name">
+
+        <div class="mb-2">
+          <label><input type="checkbox" id="prefBreak"> Breakfast</label>
+          <label class="ms-2"><input type="checkbox" id="prefLunch"> Lunch</label>
+          <label class="ms-2"><input type="checkbox" id="prefDinner"> Dinner</label>
+        </div>
+
+        <button class="btn btn-primary mb-3" id="addStudentBtn">Add Student</button>
+        <ul id="studentList" class="list-group"></ul>
+      </div>
+    </div>
+
+    <div id="menu" class="section">
+      <div class="card-box">
+        <h2>Menu</h2>
+        <div class="message-area"></div>
+
+        <div class="mb-3">
+          <button class="btn btn-outline-success choose-btn active">Choose</button>
+          <button class="btn btn-outline-warning edit-recipe-btn">Edit</button>
+        </div>
+
+        <input id="recipeName" class="form-control mb-2" placeholder="Recipe name">
+
+        <div class="d-flex gap-2 mb-2">
+          <input id="ingredientName" class="form-control" placeholder="Ingredient">
+          <input id="ingredientQty" class="form-control" placeholder="Quantity">
+          <button class="btn btn-secondary" id="addIngredientBtn">+</button>
+        </div>
+
+        <ul id="ingredientPreview" class="list-group mb-2"></ul>
+
+        <div class="mb-2">
+          <label><input type="checkbox" id="mealBreak"> Breakfast</label>
+          <label class="ms-2"><input type="checkbox" id="mealLunch"> Lunch</label>
+          <label class="ms-2"><input type="checkbox" id="mealDinner"> Dinner</label>
+        </div>
+
+        <button class="btn btn-success mb-3" id="addRecipeBtn">Add Recipe</button>
+        <ul id="menuList" class="list-group"></ul>
+      </div>
+    </div>
+
+    <div id="calculator" class="section">
+      <div class="card-box">
+        <h2>Calculator</h2>
+        <div class="message-area"></div>
+        <button class="btn btn-primary mb-3" id="calculateBtn">Calculate</button>
+        <div id="calculatorResult"></div>
+      </div>
+    </div>
+
+    <div id="graphs" class="section">
+      <div class="card-box">
+        <h2>Food Wastage Tracker</h2>
+        <div class="message-area"></div>
+
+        <div class="mb-3">
+          <label class="form-label">Food wasted today (kg)</label>
+          <input type="number" id="wasteInput" class="form-control" placeholder="e.g. 2.5">
+        </div>
+
+        <button class="btn btn-danger mb-3" id="saveWasteBtn">
+          Save Today's Data
+        </button>
+
+        <canvas id="wasteChart" height="120"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>

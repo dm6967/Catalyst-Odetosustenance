@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f8f9fa;
+}
+
+.sidebar {
+  position: fixed;
+  width: 230px;
+  top:40px; 
+  left: 20px;
+  height: 83.5vh;
+  border-radius: 18px;
+  background: white;
+  padding-top: 40px;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.08);
+}
+
+.logo {
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  background: #ff914d;
+  color: white;
+}
+
+.main {
+  margin-left: 260px;
+  padding: 40px;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.card-box {
+  background: white;
+  padding: 30px;
+  min-height: 550px;
+  border-radius: 18px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+}
