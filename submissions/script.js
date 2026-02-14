@@ -271,3 +271,120 @@ calculateBtn.onclick = () => {
     });
   });
 };
+
+const sidebarLinks = document.querySelectorAll(".sidebar-link");
+const sections = document.querySelectorAll(".section");
+
+sidebarLinks.forEach(link => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const target = this.getAttribute("data-target");
+    if (!target) return;
+
+    sidebarLinks.forEach(l => l.classList.remove("active"));
+    this.classList.add("active");
+
+    sections.forEach(section => section.classList.remove("active"));
+
+    const activeSection = document.getElementById(target);
+    if (activeSection) {
+      activeSection.classList.add("active");
+    }
+
+    if (target === "graphs") {
+      renderChart();
+    }
+  });
+});
+
+const wasteInput = document.getElementById("wasteInput");
+const saveWasteBtn = document.getElementById("saveWasteBtn");
+const ctx = document.getElementById("wasteChart");
+
+let wasteData = JSON.parse(localStorage.getItem("wasteData")) || {};
+let chart = null;
+
+function getToday() {
+  return new Date().toISOString().split("T")[0];
+}
+
+if (saveWasteBtn) {
+  saveWasteBtn.addEventListener("click", () => {
+
+    const value = parseFloat(wasteInput.value);
+
+    if (isNaN(value) || value <= -1) {
+      alert("Please enter a valid wastage amount");
+      return;
+    }
+
+    const today = getToday();
+
+   
+    wasteData[today] = value;
+
+    localStorage.setItem("wasteData", JSON.stringify(wasteData));
+
+    wasteInput.value = "";
+
+    renderChart();
+  });
+}
+
+function renderChart() {
+
+  if (!ctx) return;
+
+  const labels = Object.keys(wasteData);
+  const values = Object.values(wasteData);
+
+  if (chart) {
+    chart.destroy();
+  }
+
+  chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Food Wasted (kg)",
+        data: values,
+        tension: 0.4,
+        fill: true,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: "Kilograms"
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: "Date"
+          }
+        }
+      }
+    }
+  });
+}
+
+renderChart();
+
+
+
+
